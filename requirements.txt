@@ -1,1 +1,7 @@
-# init
+openai-agents>=0.0.7
+openai>=1.0.0
+pydantic>=2.0.0
+datasets>=2.0.0
+pytest>=8.0.0
+pytest-asyncio>=0.23.0
+python-dotenv>=1.0.0
