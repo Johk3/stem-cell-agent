@@ -1,6 +1,7 @@
 import os
 from agents import Agent, Runner, WebSearchTool
 from evaluation.gaia_loader import GAIAQuestion
+from evaluation.scoring import normalize, is_correct
 from stem_agent.models import AgentConfig, ProbeResult
 
 TOOL_MAP = {
@@ -16,10 +17,6 @@ def build_tools(tool_names: list[str]) -> list:
         if cls is not None:
             tools.append(cls())
     return tools
-
-
-def normalize(answer: str) -> str:
-    return answer.strip().lower()
 
 
 class ProbeRunner:
@@ -42,9 +39,7 @@ class ProbeRunner:
 
         for q in questions:
             result = await Runner.run(agent, q.question)
-            predicted = normalize(result.final_output)
-            expected = normalize(q.answer)
-            if predicted == expected:
+            if is_correct(result.final_output, q.answer):
                 correct += 1
             else:
                 failed_questions.append(q.question)

@@ -1,9 +1,6 @@
 from agents import Agent, Runner
 from evaluation.gaia_loader import GAIAQuestion
-
-
-def normalize(answer: str) -> str:
-    return answer.strip().lower()
+from evaluation.scoring import is_correct
 
 
 class GAIAEvaluator:
@@ -13,10 +10,8 @@ class GAIAEvaluator:
 
         for q in questions:
             result = await Runner.run(agent, q.question)
-            predicted = normalize(result.final_output)
-            expected = normalize(q.answer)
-            is_correct = predicted == expected
-            if is_correct:
+            correct_flag = is_correct(result.final_output, q.answer)
+            if correct_flag:
                 correct += 1
             per_question.append(
                 {
@@ -24,7 +19,7 @@ class GAIAEvaluator:
                     "question": q.question,
                     "expected": q.answer,
                     "predicted": result.final_output,
-                    "correct": is_correct,
+                    "correct": correct_flag,
                 }
             )
 

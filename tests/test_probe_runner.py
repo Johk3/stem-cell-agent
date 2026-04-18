@@ -1,6 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
-from stem_agent.probe_runner import ProbeRunner, build_tools, normalize
+from stem_agent.probe_runner import ProbeRunner, build_tools
+from evaluation.scoring import normalize
 from stem_agent.models import AgentConfig, ProbeResult
 from evaluation.gaia_loader import GAIAQuestion
 
