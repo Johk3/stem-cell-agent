@@ -11,6 +11,9 @@ SEARCH_QUERIES = [
     "common failure modes AI research agents GAIA benchmark wrong answers",
 ]
 
+MAX_CHARS_PER_RESULT = 3000
+MAX_TOTAL_CHARS = 10000
+
 SYNTHESIS_PROMPT = """\
 You have analyzed web search results about how deep research AI agents are built \
 and evaluated on the GAIA benchmark.
@@ -54,8 +57,10 @@ class SignalReader:
         results = []
         for query in SEARCH_QUERIES:
             result = await Runner.run(search_agent, query)
-            results.append(f"Query: {query}\nResult: {result.final_output}")
-        return "\n\n---\n\n".join(results)
+            output = result.final_output[:MAX_CHARS_PER_RESULT]
+            results.append(f"Query: {query}\nResult: {output}")
+        combined = "\n\n---\n\n".join(results)
+        return combined[:MAX_TOTAL_CHARS]
 
     async def _synthesize(self, search_results: str) -> ResearchSignals:
         response = await self._get_client().beta.chat.completions.parse(

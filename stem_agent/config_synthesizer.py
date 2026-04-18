@@ -38,17 +38,23 @@ class ConfigSynthesizer:
             self._client = AsyncOpenAI()
         return self._client
 
+    _MAX_FAILURE_REASONS = 10
+    _MAX_REASON_CHARS = 120
+
     async def synthesize(
         self,
         signals: ResearchSignals,
         failure_reasons: list[str],
     ) -> AgentConfig:
+        trimmed = [
+            r[:self._MAX_REASON_CHARS] for r in failure_reasons[-self._MAX_FAILURE_REASONS:]
+        ]
         prompt = SYNTHESIS_PROMPT.format(
             patterns=signals.patterns,
             tool_patterns=signals.tool_patterns,
             failure_modes=signals.failure_modes,
             topology=signals.topology,
-            failure_reasons=failure_reasons if failure_reasons else ["none — first attempt"],
+            failure_reasons=trimmed if trimmed else ["none — first attempt"],
             valid_tools=sorted(VALID_TOOLS),
         )
         response = await self._get_client().beta.chat.completions.parse(
