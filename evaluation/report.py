@@ -7,11 +7,15 @@ def generate_report(
     before_results: dict,
     after_results: dict,
     differentiation_log: list[dict],
-    output_path: str = "logs/report.json",
+    output_path: str | None = None,
 ) -> str:
+    now = datetime.now(timezone.utc)
+    if output_path is None:
+        ts = now.strftime("%Y%m%d_%H%M%S")
+        output_path = f"logs/report_{ts}.json"
     delta_score = after_results["score"] - before_results["score"]
     report = {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "generated_at": now.isoformat(),
         "before": {
             "score": before_results["score"],
             "correct": before_results["correct"],
