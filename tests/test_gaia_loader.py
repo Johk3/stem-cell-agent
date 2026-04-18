@@ -4,7 +4,7 @@ from evaluation.gaia_loader import GAIALoader, GAIAQuestion
 
 
 def make_mock_dataset():
-    level1 = [
+    level1_text = [
         {
             "task_id": f"task_{i}",
             "Question": f"Question {i}?",
@@ -12,7 +12,17 @@ def make_mock_dataset():
             "Final answer": f"Answer{i}",
             "file_name": "",
         }
-        for i in range(20)
+        for i in range(16)
+    ]
+    level1_with_files = [
+        {
+            "task_id": f"task_file_{i}",
+            "Question": f"File question {i}?",
+            "Level": 1,
+            "Final answer": f"FileAnswer{i}",
+            "file_name": f"attachment_{i}.pdf",
+        }
+        for i in range(4)
     ]
     level2 = [
         {
@@ -23,20 +33,28 @@ def make_mock_dataset():
             "file_name": "",
         }
     ]
-    return level1 + level2
+    return level1_text + level1_with_files + level2
 
 
 def test_loader_filters_to_level1_only():
     with patch("evaluation.gaia_loader.load_dataset", return_value=make_mock_dataset()):
-        loader = GAIALoader()
+        loader = GAIALoader(text_only=False)
         questions = loader.load()
     assert len(questions) == 20
     assert all(q.level == 1 for q in questions)
 
 
+def test_loader_text_only_excludes_file_questions():
+    with patch("evaluation.gaia_loader.load_dataset", return_value=make_mock_dataset()):
+        loader = GAIALoader(text_only=True)
+        questions = loader.load()
+    assert len(questions) == 16
+    assert all(q.file_name == "" for q in questions)
+
+
 def test_loader_split_no_overlap():
     with patch("evaluation.gaia_loader.load_dataset", return_value=make_mock_dataset()):
-        loader = GAIALoader(n_probe=5)
+        loader = GAIALoader(n_probe=5, text_only=False)
         probe, evaluation = loader.split()
     assert len(probe) == 5
     assert len(evaluation) == 15

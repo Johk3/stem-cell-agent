@@ -13,9 +13,10 @@ class GAIAQuestion:
 
 
 class GAIALoader:
-    def __init__(self, n_probe: int = 10, seed: int = 42):
+    def __init__(self, n_probe: int = 10, seed: int = 42, text_only: bool = True):
         self.n_probe = n_probe
         self.seed = seed
+        self.text_only = text_only
         self._questions: list[GAIAQuestion] | None = None
 
     def load(self) -> list[GAIAQuestion]:
@@ -35,6 +36,7 @@ class GAIALoader:
                 )
                 for row in raw
                 if int(row["Level"]) == 1
+                and (not self.text_only or not row.get("file_name", "").strip())
             ]
         return self._questions
 
