@@ -35,7 +35,9 @@ async def run(task_class: str, n_probe: int, max_eval: int | None) -> None:
           f"({before_results['correct']}/{before_results['total']})")
 
     print("\n[stem] === DIFFERENTIATION: signal reading → config synthesis → probe ===")
-    config = await stem.differentiate(probe_questions)
+    baseline_probe = await evaluator.evaluate(stem.build_baseline_agent(), probe_questions)
+    print(f"[stem] Baseline probe score: {baseline_probe['score']:.1%} — threshold for commit")
+    config = await stem.differentiate(probe_questions, baseline_probe_score=baseline_probe["score"])
     print(f"[stem] Committed config — tools: {config.tools}, topology: {config.topology}")
 
     print("\n[stem] === AFTER: evaluating differentiated research agent ===")

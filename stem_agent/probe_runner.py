@@ -1,7 +1,8 @@
+import asyncio
 import os
 from agents import Agent, Runner, WebSearchTool
 from evaluation.gaia_loader import GAIAQuestion
-from evaluation.scoring import normalize, is_correct
+from evaluation.scoring import is_correct
 from stem_agent.models import AgentConfig, ProbeResult
 
 TOOL_MAP = {
@@ -19,6 +20,24 @@ def build_tools(tool_names: list[str]) -> list:
     return tools
 
 
+def _make_failure_reason(question: str, expected: str, predicted: str) -> str:
+    q_lower = question.lower()
+    if any(w in q_lower for w in ("who", "name", "person", "author", "scientist")):
+        qtype = "name lookup"
+    elif any(w in q_lower for w in ("when", "year", "date")):
+        qtype = "date/year lookup"
+    elif any(w in q_lower for w in ("how many", "count", "number of")):
+        qtype = "numeric count"
+    elif any(w in q_lower for w in ("what is", "define", "meaning")):
+        qtype = "definition/fact"
+    else:
+        qtype = "factual lookup"
+    return (
+        f"[{qtype}] Expected '{expected}', got '{predicted[:80]}' — "
+        f"agent gave {'no answer' if not predicted.strip() else 'wrong answer'}"
+    )
+
+
 class ProbeRunner:
     def __init__(self):
         self.model = os.getenv("OPENAI_MODEL", "gpt-4o")
@@ -33,24 +52,20 @@ class ProbeRunner:
             model=self.model,
         )
 
-        correct = 0
-        failed_questions: list[str] = []
-        failure_reasons: list[str] = []
-
-        for q in questions:
+        async def run_one(q: GAIAQuestion) -> tuple[bool, str, str]:
             result = await Runner.run(agent, q.question)
-            if is_correct(result.final_output, q.answer):
-                correct += 1
-            else:
-                failed_questions.append(q.question)
-                failure_reasons.append(
-                    f"Expected '{q.answer}', got '{result.final_output}'"
-                )
+            correct = is_correct(result.final_output, q.answer)
+            return correct, q.question, _make_failure_reason(q.question, q.answer, result.final_output)
+
+        outcomes = await asyncio.gather(*[run_one(q) for q in questions])
+
+        correct = sum(1 for ok, _, _ in outcomes if ok)
+        failed_questions = [q for ok, q, _ in outcomes if not ok]
+        failure_reasons = [r for ok, _, r in outcomes if not ok]
 
         total = len(questions)
-        score = correct / total if total else 0.0
         return ProbeResult(
-            score=score,
+            score=correct / total if total else 0.0,
             failed_questions=failed_questions,
             failure_reasons=failure_reasons,
         )

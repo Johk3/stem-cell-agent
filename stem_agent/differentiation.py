@@ -18,6 +18,7 @@ class DifferentiationController:
         probe_questions: list[GAIAQuestion],
         max_attempts: int = 3,
         log_dir: str = "logs",
+        baseline_probe_score: float | None = None,
     ):
         self.signal_reader = signal_reader
         self.config_synthesizer = config_synthesizer
@@ -25,6 +26,7 @@ class DifferentiationController:
         self.probe_questions = probe_questions
         self.max_attempts = max_attempts
         self.log_dir = Path(log_dir)
+        self.baseline_probe_score = baseline_probe_score
         self.log: list[dict] = []
         self._config_stack: list[AgentConfig] = []
 
@@ -47,7 +49,8 @@ class DifferentiationController:
             # PROBE
             probe_result = await self.probe_runner.run(config, self.probe_questions)
 
-            if probe_result.score >= config.probe_threshold:
+            threshold = max(config.probe_threshold, (self.baseline_probe_score or 0.0))
+            if probe_result.score >= threshold:
                 # COMMIT
                 self._config_stack.append(config)
                 self._record(attempt, "commit", {

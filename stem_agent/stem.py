@@ -50,7 +50,11 @@ class StemAgent:
             model=self.model,
         )
 
-    async def differentiate(self, probe_questions: list[GAIAQuestion]) -> AgentConfig:
+    async def differentiate(
+        self,
+        probe_questions: list[GAIAQuestion],
+        baseline_probe_score: float | None = None,
+    ) -> AgentConfig:
         """Run the differentiation process. Returns committed AgentConfig."""
         controller = DifferentiationController(
             signal_reader=SignalReader(model=self.model),
@@ -59,6 +63,7 @@ class StemAgent:
             probe_questions=probe_questions,
             max_attempts=self.max_attempts,
             log_dir=self.log_dir,
+            baseline_probe_score=baseline_probe_score,
         )
         self._differentiated_config = await controller.differentiate()
         self._differentiation_log = controller.log
