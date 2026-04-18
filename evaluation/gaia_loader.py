@@ -24,18 +24,17 @@ class GAIALoader:
                 "gaia-benchmark/GAIA",
                 "2023_all",
                 split="validation",
-                trust_remote_code=True,
             )
             self._questions = [
                 GAIAQuestion(
                     task_id=row["task_id"],
                     question=row["Question"],
                     answer=row["Final answer"],
-                    level=row["Level"],
+                    level=int(row["Level"]),
                     file_name=row.get("file_name", ""),
                 )
                 for row in raw
-                if row["Level"] == 1
+                if int(row["Level"]) == 1
             ]
         return self._questions
 
