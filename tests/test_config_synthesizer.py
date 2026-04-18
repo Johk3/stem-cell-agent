@@ -5,16 +5,16 @@ from stem_agent.models import ResearchSignals, AgentConfig
 
 SIGNALS = ResearchSignals(
     patterns=["decompose queries", "verify each fact"],
-    tool_patterns=["web_search", "file_read"],
+    tool_patterns=["web_search"],
     failure_modes=["hallucination", "wrong number format"],
     topology="single",
 )
 
 GOOD_CONFIG = AgentConfig(
     system_prompt="You are a deep research agent. Decompose queries before answering.",
-    tools=["web_search", "file_read"],
+    tools=["web_search"],
     topology="single",
-    probe_threshold=0.4,
+    probe_threshold=0.3,
 )
 
 

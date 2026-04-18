@@ -50,7 +50,12 @@ class DifferentiationController:
             if probe_result.score >= config.probe_threshold:
                 # COMMIT
                 self._config_stack.append(config)
-                self._record(attempt, "commit", probe_result.score)
+                self._record(attempt, "commit", {
+                    "score": probe_result.score,
+                    "tools": config.tools,
+                    "topology": config.topology,
+                    "system_prompt": config.system_prompt,
+                })
                 self._save_log()
                 return config
             else:

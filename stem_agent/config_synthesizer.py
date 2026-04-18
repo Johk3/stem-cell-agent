@@ -2,24 +2,27 @@ from openai import AsyncOpenAI
 from stem_agent.models import ResearchSignals, AgentConfig, VALID_TOOLS
 
 SYNTHESIS_PROMPT = """\
-You are designing a configuration for a deep research AI agent that will be \
-evaluated on the GAIA benchmark.
+You are designing a system prompt for a deep research AI agent evaluated on GAIA \
+Level 1 benchmark questions. These questions require factual lookups, multi-step \
+reasoning, and precise short answers (a name, number, or short phrase).
 
-Environmental signals:
+Environmental signals from top-performing agents:
 - Reasoning patterns: {patterns}
-- Effective tool combinations: {tool_patterns}
 - Known failure modes to address: {failure_modes}
-- Recommended topology: {topology}
 
 Previous attempt failure reasons (empty = first attempt): {failure_reasons}
 
+Available tools: {valid_tools}
+Topology: single (only option)
+
 Design an AgentConfig:
-- system_prompt: Detailed instructions (200-400 words). Must explicitly address \
-  the failure modes above. Include step-by-step research strategy.
-- tools: Subset of {valid_tools} — choose only what's needed.
-- topology: "single" or "orchestrator+subagents"
-- probe_threshold: Minimum probe score to accept (use 0.3 for Level 1 — the probe \
-  set is only 10 questions so variance is high; 0.3 means 3/10 correct)
+- system_prompt: 150-300 words. Focus on: always attempt every question, return \
+  only the precise short answer (no explanation), search the web for factual \
+  information, break multi-step questions into sub-searches, never refuse a \
+  question due to content type.
+- tools: use ["web_search"] — the only available tool.
+- topology: "single"
+- probe_threshold: 0.3
 
 Return valid JSON matching the AgentConfig schema exactly.
 """

@@ -1,7 +1,7 @@
 from typing import Literal
 from pydantic import BaseModel, field_validator
 
-VALID_TOOLS = {"web_search", "file_read", "file_write", "python_repl"}
+VALID_TOOLS = {"web_search"}
 
 
 class ResearchSignals(BaseModel):
@@ -14,7 +14,7 @@ class ResearchSignals(BaseModel):
 class AgentConfig(BaseModel):
     system_prompt: str
     tools: list[str]
-    topology: Literal["single", "orchestrator+subagents"]
+    topology: Literal["single"]
     probe_threshold: float
 
     @field_validator("tools")
