@@ -18,7 +18,8 @@ Design an AgentConfig:
   the failure modes above. Include step-by-step research strategy.
 - tools: Subset of {valid_tools} — choose only what's needed.
 - topology: "single" or "orchestrator+subagents"
-- probe_threshold: Minimum probe score to accept (use 0.4 for Level 1)
+- probe_threshold: Minimum probe score to accept (use 0.3 for Level 1 — the probe \
+  set is only 10 questions so variance is high; 0.3 means 3/10 correct)
 
 Return valid JSON matching the AgentConfig schema exactly.
 """

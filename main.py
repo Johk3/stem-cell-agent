@@ -25,7 +25,7 @@ async def run(task_class: str, n_probe: int, max_eval: int | None) -> None:
         f"{len(eval_questions)} evaluation questions"
     )
 
-    stem = StemAgent()
+    stem = StemAgent(max_attempts=5)
     evaluator = GAIAEvaluator()
 
     print("\n[stem] === BEFORE: evaluating undifferentiated stem agent ===")
