@@ -13,7 +13,8 @@ from evaluation.report import generate_report
 
 async def run(task_class: str, n_probe: int, max_eval: int | None) -> None:
     print(f"\n[stem] Task class: {task_class}")
-    print(f"[stem] Model: {os.getenv('OPENAI_MODEL', 'gpt-4o')}")
+    print(f"[stem] Nucleus (brain): {os.getenv('OPENAI_NUCLEUS_MODEL', 'gpt-5.4')}")
+    print(f"[stem] Cytoplasm (worker): {os.getenv('OPENAI_CYTOPLASM_MODEL', 'gpt-5.4-mini')}")
 
     loader = GAIALoader(n_probe=n_probe)
     probe_questions, eval_questions = loader.split()

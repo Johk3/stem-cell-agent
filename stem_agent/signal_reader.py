@@ -34,7 +34,7 @@ Return a JSON object with:
 
 
 class SignalReader:
-    def __init__(self, model: str = "gpt-4o"):
+    def __init__(self, model: str = "gpt-5.4"):
         self.model = model
         self._client: AsyncOpenAI | None = None
 

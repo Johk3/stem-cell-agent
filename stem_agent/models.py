@@ -39,3 +39,4 @@ class ProbeResult(BaseModel):
     score: float
     failed_questions: list[str]
     failure_reasons: list[str]
+    few_shot_examples: list[dict] = []
