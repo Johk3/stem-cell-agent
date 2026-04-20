@@ -16,7 +16,7 @@ The end result isn't a universal agent. It's an agent that became specific — t
 ## Requirements
 
 - Python 3.11+
-- OpenAI API key with access to a chat completion model (e.g. `gpt-4o`)
+- OpenAI API key with access to `gpt-5.4` and `gpt-5.4-mini`
 - HuggingFace account with access to the [GAIA benchmark dataset](https://huggingface.co/datasets/gaia-benchmark/GAIA)
 
 ```bash
@@ -25,6 +25,6 @@ cp .env.example .env  # add your OPENAI_API_KEY
 python main.py --task-class deep_research
 ```
 
-Set `OPENAI_MODEL` in `.env` to swap models without code changes. Defaults to `gpt-4o`.
+Set `OPENAI_NUCLEUS_MODEL` and `OPENAI_CYTOPLASM_MODEL` in `.env` to swap models. The nucleus (brain) drives differentiation while the cytoplasm (worker) answers questions. Defaults to `gpt-5.4` and `gpt-5.4-mini`.
 
 ---
