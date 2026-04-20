@@ -1,0 +1,292 @@
+{
+  "generated_at": "2026-04-17T11:29:34.777570+00:00",
+  "before": {
+    "score": 0.35,
+    "correct": 7,
+    "total": 20
+  },
+  "after": {
+    "score": 0.3,
+    "correct": 6,
+    "total": 20
+  },
+  "delta": {
+    "score": -0.04999999999999999,
+    "correct": -1
+  },
+  "differentiation_log": [
+    {
+      "attempt": 0,
+      "outcome": "candidate",
+      "detail": {
+        "score": 0.8,
+        "tools": [
+          "web_search"
+        ],
+        "topology": "single",
+        "system_prompt": "You are a research agent answering questions that require web search, multi-step reasoning, and precise short answers.\n\nWORKFLOW:\n1. Read the question carefully. Identify the required answer type and any exact formatting constraints. If the question is ambiguous, choose the most likely interpretation from the wording and stay consistent.\n2. Before searching, decompose complex or multi-hop questions into 2-5 sub-questions. Make a brief plan, then execute it step by step.\n3. For factual questions, search the web using multiple query variants per sub-question. Do NOT try to answer everything in one query. Adapt queries based on what you learn.\n4. Track evidence by sub-question. Prefer official, primary, or directly authoritative sources; if unavailable, synthesize across reliable secondary sources.\n5. Verify critical facts with at least one independent source, especially names, dates, numbers, and rankings. Do not rely on search snippets alone when a page can be opened.\n6. If evidence conflicts or is incomplete, revise your hypothesis and search again rather than committing early.\n7. For logic, math, or reasoning tasks: work step by step WITHOUT searching, except to confirm uncertain factual premises.\n8. Never refuse a question. Always provide your best answer.\n9. Follow any format instructions exactly (comma-separated, alphabetical, plain text numbers, etc.).\n\nYOUR FINAL LINE MUST BE:\nANSWER: <your answer here>\n\nThe ANSWER line contains ONLY the answer. No explanation, no \"the answer is\", no extra words. Examples:\n- ANSWER: Paris\n- ANSWER: 42\n- ANSWER: Braintree, Honolulu"
+      },
+      "timestamp": "2026-04-17T11:26:44.707174+00:00"
+    },
+    {
+      "attempt": 1,
+      "outcome": "candidate",
+      "detail": {
+        "score": 0.7,
+        "tools": [
+          "web_search"
+        ],
+        "topology": "single",
+        "system_prompt": "You are a research agent answering questions that require web search, multi-step reasoning, and precise short answers.\n\nWORKFLOW:\n1. Read the question carefully. Identify what type of answer is needed (a name, number, date, list, phrase) and any exact formatting constraints.\n2. Before searching, decompose complex or multi-hop questions into 2-5 sub-questions. Keep a short plan and update it if evidence contradicts your current hypothesis.\n3. For factual questions, search the web iteratively. Use multiple query variants per sub-question (keywords, exact phrases, entities, dates). Do NOT try to answer everything in one query.\n4. Prefer primary or official sources when possible; otherwise triangulate across at least two reliable sources for critical facts. Do not rely on search snippets alone when a page must be opened to verify.\n5. If results are incomplete, conflicting, or ambiguous, escalate: refine queries, search narrower/broader, and explicitly re-check the uncertain sub-question.\n6. For logic puzzles, math, or reasoning tasks: work through the problem step by step WITHOUT searching. Only search for factual premises you are unsure about.\n7. Never refuse a question. Always provide your best answer.\n8. Follow any format instructions exactly (comma-separated, alphabetical, plain text numbers, etc.).\n\nGuardrails:\n- Avoid overcommitting to an early answer; revise when new evidence appears.\n- Watch for context drift on long tasks; keep sub-question answers aligned to the original ask.\n\nYOUR FINAL LINE MUST BE:\nANSWER: <your answer here>\n\nThe ANSWER line contains ONLY the answer. No explanation, no \"the answer is\", no extra words. Examples:\n- ANSWER: Paris\n- ANSWER: 42\n- ANSWER: Braintree, Honolulu"
+      },
+      "timestamp": "2026-04-17T11:26:59.231923+00:00"
+    },
+    {
+      "attempt": 2,
+      "outcome": "candidate",
+      "detail": {
+        "score": 0.8,
+        "tools": [
+          "web_search"
+        ],
+        "topology": "single",
+        "system_prompt": "You are a research agent answering questions that require web search, multi-step reasoning, and precise short answers.\n\nWORKFLOW:\n1. Read the question carefully. Identify what type of answer is needed (a name, number, date, list, phrase) and any exact formatting constraints.\n2. Before searching, decompose complex or multi-hop questions into 2-5 sub-questions. Make a brief plan, then execute it step by step.\n3. For factual questions, search the web using multiple query variants per sub-question rather than one broad query. Prefer official, primary, or highly authoritative sources when possible.\n4. After each search, synthesize the evidence, track which source supports which fact, and refine the next query based on gaps or conflicts. If snippets are incomplete, search again instead of inferring from partial evidence.\n5. Verify critical facts with a second independent source; if evidence conflicts, revise your hypothesis and resolve the discrepancy before answering.\n6. For logic puzzles, math, or reasoning tasks: work through the problem step by step WITHOUT searching. Only search for factual premises you are unsure about.\n7. If progress stalls, explicitly debug: revisit the decomposition, try narrower/broader terms, and avoid drifting from the original question.\n8. Never refuse a question. Always provide your best answer.\n9. Follow any format instructions exactly (comma-separated, alphabetical, plain text numbers, etc.).\n\nYOUR FINAL LINE MUST BE:\nANSWER: <your answer here>\n\nThe ANSWER line contains ONLY the answer. No explanation, no \"the answer is\", no extra words. Examples:\n- ANSWER: Paris\n- ANSWER: 42\n- ANSWER: Braintree, Honolulu"
+      },
+      "timestamp": "2026-04-17T11:27:21.963614+00:00"
+    },
+    {
+      "attempt": 3,
+      "outcome": "retrograde",
+      "detail": 0.6,
+      "timestamp": "2026-04-17T11:27:55.257203+00:00"
+    },
+    {
+      "attempt": 4,
+      "outcome": "candidate",
+      "detail": {
+        "score": 0.8,
+        "tools": [
+          "web_search"
+        ],
+        "topology": "single",
+        "system_prompt": "You are a research agent answering questions that require web search, multi-step reasoning, and precise short answers.\n\nWORKFLOW:\n1. Read the question carefully. Identify the required answer type (name, number, date, list, phrase) and any exact formatting constraints.\n2. Before searching, decompose complex or multi-hop questions into short sub-questions. Make a brief plan, then answer sub-questions one by one.\n3. For factual questions, search the web using multiple query variants per sub-question. Do NOT try to answer everything in one query.\n4. After each search, synthesize the evidence, note which source seems most authoritative, and refine the next query based on what you learned.\n5. Verify critical facts with a second source; prefer official, primary, or highly authoritative sources when possible. Do not rely on snippets alone if the answer is important or ambiguous.\n6. If evidence conflicts or is incomplete, explicitly revisit earlier assumptions and search again with revised terms rather than committing too early.\n7. For logic puzzles, math, or reasoning tasks: work through the problem step by step WITHOUT searching. Only search for factual premises you are unsure about.\n8. Never refuse a question. Always provide your best answer.\n9. Follow any format instructions exactly (comma-separated, alphabetical, plain text numbers, etc.).\n10. For name lookup questions, copy the canonical spelling exactly as given by the most authoritative source; preserve requested variants and do not normalize abbreviations or alternate spellings unless the question asks for them.\n11. For numeric count questions, define the inclusion rule explicitly, count only items directly supported by sources, and re-check the final total against the underlying list/data before answering.\n12. When a question is ambiguous, test the leading interpretations briefly and choose the one best supported by authoritative evidence and wording, avoiding early commitment to a single reading.\n\nYOUR FINAL LINE MUST BE:\nANSWER: <your answer here>\n\nThe ANSWER line contains ONLY the answer. No explanation, no \"the answer is\", no extra words. Examples:\n- ANSWER: Paris\n- ANSWER: 42\n- ANSWER: Braintree, Honolulu"
+      },
+      "timestamp": "2026-04-17T11:28:09.990284+00:00"
+    },
+    {
+      "attempt": "final",
+      "outcome": "commit",
+      "detail": {
+        "score": 0.8,
+        "tools": [
+          "web_search"
+        ],
+        "topology": "single",
+        "system_prompt": "You are a research agent answering questions that require web search, multi-step reasoning, and precise short answers.\n\nWORKFLOW:\n1. Read the question carefully. Identify the required answer type and any exact formatting constraints. If the question is ambiguous, choose the most likely interpretation from the wording and stay consistent.\n2. Before searching, decompose complex or multi-hop questions into 2-5 sub-questions. Make a brief plan, then execute it step by step.\n3. For factual questions, search the web using multiple query variants per sub-question. Do NOT try to answer everything in one query. Adapt queries based on what you learn.\n4. Track evidence by sub-question. Prefer official, primary, or directly authoritative sources; if unavailable, synthesize across reliable secondary sources.\n5. Verify critical facts with at least one independent source, especially names, dates, numbers, and rankings. Do not rely on search snippets alone when a page can be opened.\n6. If evidence conflicts or is incomplete, revise your hypothesis and search again rather than committing early.\n7. For logic, math, or reasoning tasks: work step by step WITHOUT searching, except to confirm uncertain factual premises.\n8. Never refuse a question. Always provide your best answer.\n9. Follow any format instructions exactly (comma-separated, alphabetical, plain text numbers, etc.).\n\nYOUR FINAL LINE MUST BE:\nANSWER: <your answer here>\n\nThe ANSWER line contains ONLY the answer. No explanation, no \"the answer is\", no extra words. Examples:\n- ANSWER: Paris\n- ANSWER: 42\n- ANSWER: Braintree, Honolulu"
+      },
+      "timestamp": "2026-04-17T11:28:09.990292+00:00"
+    }
+  ],
+  "per_question_comparison": [
+    {
+      "task_id": "3cef3a44-215e-4aed-8e3b-b1e3f08063b7",
+      "question": "I'm making a grocery list for my mom, but she's a professor of botany and she's a real stickler when it comes to categorizing things. I need to add different foods to different categories on the grocery list, but if I make a mistake, she won't buy anything inserted in the wrong category. Here's the list I have so far:\n\nmilk, eggs, flour, whole bean coffee, Oreos, sweet potatoes, fresh basil, plums, green beans, rice, corn, bell pepper, whole allspice, acorns, broccoli, celery, zucchini, lettuce, peanuts\n\nI need to make headings for the fruits and vegetables. Could you please create a list of just the vegetables from my list? If you could do that, then I can figure out how to categorize the rest of the list into the appropriate categories. But remember that my mom is a real stickler, so make sure that no botanical fruits end up on the vegetable list, or she won't get them when she's at the store. Please alphabetize the list of vegetables, and place each item in a comma separated list.",
+      "expected": "broccoli, celery, fresh basil, lettuce, sweet potatoes",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "bell pepper, broccoli, celery, corn, green beans, lettuce, sweet potatoes, zucchini",
+      "after_predicted": "acorns, bell pepper, broccoli, celery, corn, green beans, lettuce, sweet potatoes, zucchini",
+      "changed": false
+    },
+    {
+      "task_id": "72e110e7-464c-453c-a309-90a95aed6538",
+      "question": "Under DDC 633 on Bielefeld University Library's BASE, as of 2020, from what country was the unknown language article with a flag unique from the others?",
+      "expected": "Guatemala",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "Taiwan",
+      "after_predicted": "Switzerland",
+      "changed": false
+    },
+    {
+      "task_id": "7673d772-ef80-4f0f-a602-1bf4485c9b43",
+      "question": "On Cornell Law School website's legal information institute, under the fifth section of federal rules alphabetically, what word was deleted in the last amendment to the first rule in the article that has \"witnesses\" in the most titles as of 2021?",
+      "expected": "inference",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "reasonable",
+      "after_predicted": "witness",
+      "changed": false
+    },
+    {
+      "task_id": "cabe07ed-9eca-40ea-8ead-410ef5e83f91",
+      "question": "What is the surname of the equine veterinarian mentioned in 1.E Exercises from the chemistry materials licensed by Marisa Alviar-Agnew & Henry Agnew under the CK-12 license in LibreText's Introductory Chemistry materials as compiled 08/21/2023?",
+      "expected": "Louvrier",
+      "before_correct": true,
+      "after_correct": false,
+      "before_predicted": "Louvrier",
+      "after_predicted": "Agnew",
+      "changed": true
+    },
+    {
+      "task_id": "42576abe-0deb-4869-8c63-225c2d75a95a",
+      "question": "In the fictional language of Tizin, basic sentences are arranged with the Verb first, followed by the direct object, followed by the subject of the sentence. I want to express my love for apples to my Tizin friend. \n\nThe word that indicates oneself is \"Pa\" is the nominative form, \"Mato\" is the accusative form, and \"Sing\" is the genitive form. \n\nThe root verb that indicates an intense like for something is \"Maktay\". When it is used in the present, it is used in it's root form, when it is used in the preterit past, it is \"Tay\", and when it is used in the imperfect past, it is \"Aktay\". It is used differently than in English, and is better translated as \"is pleasing to\", meaning that the thing doing the liking is actually the object of the sentence rather than the subject.\n\nThe word for apples is borrowed from English in Tizin, and so it is \"Apple\" is the nominative form, \"Zapple\" is the accusative form, and \"Izapple\" is the genitive form. \n\nPlease translate \"I like apples\" to Tizin.",
+      "expected": "Maktay mato apple",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "Maktay Zapple Pa",
+      "after_predicted": "Maktay Zapple Pa",
+      "changed": false
+    },
+    {
+      "task_id": "305ac316-eef6-4446-960a-92d80d542f82",
+      "question": "Who did the actor who played Ray in the Polish-language version of Everybody Loves Raymond play in Magda M.? Give only the first name.",
+      "expected": "Wojciech",
+      "before_correct": false,
+      "after_correct": true,
+      "before_predicted": "He played **Bartek**. ANSWER: Bartek",
+      "after_predicted": "Wojciech",
+      "changed": true
+    },
+    {
+      "task_id": "840bfca7-4f7b-481a-8794-c560c340185d",
+      "question": "On June 6, 2023, an article by Carolyn Collins Petersen was published in Universe Today. This article mentions a team that produced a paper about their observations, linked at the bottom of the article. Find this paper. Under what NASA award number was the work performed by R. G. Arendt supported by?",
+      "expected": "80GSFC21M0002",
+      "before_correct": true,
+      "after_correct": true,
+      "before_predicted": "80GSFC21M0002",
+      "after_predicted": "80GSFC21M0002",
+      "changed": false
+    },
+    {
+      "task_id": "a0068077-79f4-461a-adfe-75c1a4148545",
+      "question": "What was the actual enrollment count of the clinical trial on H. pylori in acne vulgaris patients from Jan-May 2018 as listed on the NIH website?",
+      "expected": "90",
+      "before_correct": true,
+      "after_correct": true,
+      "before_predicted": "90 participants",
+      "after_predicted": "90",
+      "changed": false
+    },
+    {
+      "task_id": "dc22a632-937f-4e6a-b72f-ba0ff3f5ff97",
+      "question": "What was the complete title of the book in which two James Beard Award winners recommended the restaurant where Ali Khan enjoyed a New Mexican staple in his cost-conscious TV show that started in 2015? Write the numbers in plain text if there are some in the title.",
+      "expected": "Five Hundred Things To Eat Before It's Too Late: and the Very Best Places to Eat Them",
+      "before_correct": true,
+      "after_correct": true,
+      "before_predicted": "Five Hundred Things To Eat Before It's Too Late: and the Very Best Places to Eat Them",
+      "after_predicted": "Five Hundred Things to Eat Before It\u2019s Too Late: and the Very Best Places to Eat Them",
+      "changed": false
+    },
+    {
+      "task_id": "b415aba4-4b68-4fc6-9b89-2c812e55a3e1",
+      "question": "In Nature journal's Scientific Reports conference proceedings from 2012, in the article that did not mention plasmons or plasmonics, what nano-compound is studied? Don't use the prefix nano in your answer if there is one.",
+      "expected": "diamond",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "molybdenum",
+      "after_predicted": "dielectric nanoparticle",
+      "changed": false
+    },
+    {
+      "task_id": "d0633230-7067-47a9-9dbf-ee11e0a2cdd6",
+      "question": "In the Scikit-Learn July 2017 changelog, what other predictor base command received a bug fix? Just give the name, not a path.",
+      "expected": "BaseLabelPropagation",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "BaseBagging",
+      "after_predicted": "LogisticRegressionCV",
+      "changed": false
+    },
+    {
+      "task_id": "9d191bce-651d-4746-be2d-7ef8ecadb9c2",
+      "question": "Examine the video at https://www.youtube.com/watch?v=1htKBjuUWec.\n\nWhat does Teal'c say in response to the question \"Isn't that hot?\"",
+      "expected": "Extremely",
+      "before_correct": true,
+      "after_correct": true,
+      "before_predicted": "Extremely.",
+      "after_predicted": "Extremely.",
+      "changed": false
+    },
+    {
+      "task_id": "50ad0280-0819-4bd9-b275-5de32d3b5bcb",
+      "question": "Pull out the sentence in the following 5x7 block of text. Read from left to right and use all of the letters in order:\n\nTHESE\nAGULL\nGLIDE\nDPEAC\nEFULL\nYTOMY\nCHAIR",
+      "expected": "The seagull glided peacefully to my chair.",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "The seagulls glide peacefully to my chair.",
+      "after_predicted": "The seagulls glide peacefully to my chair",
+      "changed": false
+    },
+    {
+      "task_id": "50ec8903-b81f-4257-9450-1085afd2c319",
+      "question": "A standard Rubik\u2019s cube has been broken into cubes making up its sides. The cubes are jumbled, and one is removed. There are 6 cubes with one colored face, 12 edge cubes with two colored faces, and 8 corner cubes with three colored faces. All blue cubes have been found. All cubes directly left, right, above, and below the orange center cube have been found, along with the center cube. The green corners have all been found, along with all green that borders yellow. For all orange cubes found, the opposite face\u2019s cubes have been found. The removed cube has two colors on its faces. What are they? Answer using a comma separated list, with the colors ordered alphabetically.",
+      "expected": "green, white",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "blue, orange",
+      "after_predicted": "blue,orange",
+      "changed": false
+    },
+    {
+      "task_id": "c365c1c7-a3db-4d5e-a9a1-66f56eae7865",
+      "question": "Of the cities within the United States where U.S. presidents were born, which two are the farthest apart from the westernmost to the easternmost going east, giving the city names only? Give them to me in alphabetical order, in a comma-separated list",
+      "expected": "Braintree, Honolulu",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "Honolulu, Quincy",
+      "after_predicted": "Honolulu, Yorba Linda",
+      "changed": false
+    },
+    {
+      "task_id": "c714ab3a-da30-4603-bacd-d008800188b9",
+      "question": "You are Van Helsing, a renowned vampire hunter. A Count of Moldova, La\u021bcu IV, son of  Costea, has tasked you with investigating the village of \u0218irnea in neighboring Wallachia. The Count's advisors have reported that a vampire was spotted crossing the border near the village, and would like you to investigate it.\n\nYou travel to the village of \u0218irnea, and you begin your investigation. One night, just before dawn, you catch a glimpse of a man in a long black cape with red lining leaping from roof-top to roof-top with superhuman agility. It's a vampire! You try to chase the creature back to its home, but the creature is too fast. However, because of the remoteness of the village, you know with absolute certainty that the vampire must be a resident of the village. You decide that your best course of action will be to visit all 100 residents of the town during the day. You know something about vampires and humans that will make your investigation possible; humans always tell the truth, but vampires always lie.\n\nIn the afternoon, you go from house to house, speaking with all 100 residents of \u0218irnea. You ask everyone the same question: \"How many vampires are living in \u0218irnea\". Everyone in the village gives the same response, \"At least one of us is a human.\"\n\nHow many residents of \u0218irnea have been turned into vampires?",
+      "expected": "100",
+      "before_correct": true,
+      "after_correct": false,
+      "before_predicted": "100",
+      "after_predicted": "99",
+      "changed": true
+    },
+    {
+      "task_id": "5188369a-3bbe-43d8-8b94-11558f909a08",
+      "question": "What writer is quoted by Merriam-Webster for the Word of the Day from June 27, 2022?",
+      "expected": "Annie Levin",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "Paul Katzeff",
+      "after_predicted": "Francis Grose",
+      "changed": false
+    },
+    {
+      "task_id": "5a0c1adf-205e-4841-a666-7c3ef95def9d",
+      "question": "What is the first name of the only Malko Competition recipient from the 20th Century (after 1977) whose nationality on record is a country that no longer exists?",
+      "expected": "Claus",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "None \u2014 there is no post-1977 20th-century Malko Competition winner whose recorded nationality is a country that no longer exists.",
+      "after_predicted": "Gotthard",
+      "changed": false
+    },
+    {
+      "task_id": "23dd907f-1261-4488-b21c-e9185af91d5e",
+      "question": "In Audre Lorde\u2019s poem \u201cFather Son and Holy Ghost\u201d, what is the number of the stanza in which some lines are indented?",
+      "expected": "2",
+      "before_correct": true,
+      "after_correct": true,
+      "before_predicted": "2",
+      "after_predicted": "2",
+      "changed": false
+    },
+    {
+      "task_id": "7d4a7d1d-cac6-44a8-96e8-ea9584a70825",
+      "question": "According to Girls Who Code, how long did it take in years for the percentage of computer scientists that were women to change by 13% from a starting point of 37%?",
+      "expected": "22",
+      "before_correct": false,
+      "after_correct": false,
+      "before_predicted": "11 years",
+      "after_predicted": "13 years",
+      "changed": false
+    }
+  ]
+}

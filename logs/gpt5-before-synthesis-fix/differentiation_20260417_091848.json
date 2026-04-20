@@ -1,0 +1,20 @@
+[
+  {
+    "attempt": 0,
+    "outcome": "retrograde",
+    "detail": 0.0,
+    "timestamp": "2026-04-17T09:18:48.771326+00:00"
+  },
+  {
+    "attempt": 1,
+    "outcome": "retrograde",
+    "detail": 0.0,
+    "timestamp": "2026-04-17T09:18:48.771347+00:00"
+  },
+  {
+    "attempt": 2,
+    "outcome": "retrograde",
+    "detail": 0.0,
+    "timestamp": "2026-04-17T09:18:48.771362+00:00"
+  }
+]

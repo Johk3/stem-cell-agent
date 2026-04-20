@@ -1,0 +1,32 @@
+[
+  {
+    "attempt": 0,
+    "outcome": "retrograde",
+    "detail": 0.6,
+    "timestamp": "2026-04-17T15:11:58.969673+00:00"
+  },
+  {
+    "attempt": 1,
+    "outcome": "retrograde",
+    "detail": 0.7,
+    "timestamp": "2026-04-17T15:12:14.534869+00:00"
+  },
+  {
+    "attempt": 2,
+    "outcome": "retrograde",
+    "detail": 0.8,
+    "timestamp": "2026-04-17T15:12:36.856227+00:00"
+  },
+  {
+    "attempt": 3,
+    "outcome": "retrograde",
+    "detail": 0.8,
+    "timestamp": "2026-04-17T15:12:50.483219+00:00"
+  },
+  {
+    "attempt": 4,
+    "outcome": "retrograde",
+    "detail": 0.8,
+    "timestamp": "2026-04-17T15:13:17.408348+00:00"
+  }
+]
