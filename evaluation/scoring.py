@@ -4,6 +4,23 @@ import re
 _ARTICLES = re.compile(r"\b(a|an|the)\b")
 _PUNCT = re.compile(r"[^\w\s]")
 _WHITESPACE = re.compile(r"\s+")
+_ANSWER_TAG = re.compile(
+    r"(?:^|\n)\s*\**\s*(?:ANSWER|Final Answer)\s*:?\s*\**\s*:?\s*(.+?)(?:\n|$)",
+    re.IGNORECASE,
+)
+
+
+def extract_answer(text: str) -> str:
+    """Extract answer from agent output.
+
+    Looks for ``ANSWER:`` / ``**ANSWER:**`` / ``Final Answer:`` tags.  When
+    multiple matches exist the *last* one wins (agents often refine their
+    answer).  Falls back to the full text for containment scoring.
+    """
+    matches = list(_ANSWER_TAG.finditer(text))
+    if matches:
+        return matches[-1].group(1).strip().strip("*").strip()
+    return text.strip()
 
 
 def normalize(text: str) -> str:

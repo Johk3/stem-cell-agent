@@ -1,19 +1,20 @@
 import asyncio
 from agents import Agent, Runner
 from evaluation.gaia_loader import GAIAQuestion
-from evaluation.scoring import is_correct
+from evaluation.scoring import extract_answer, is_correct
 
 
 class GAIAEvaluator:
     async def evaluate(self, agent: Agent, questions: list[GAIAQuestion]) -> dict:
         async def run_one(q: GAIAQuestion) -> dict:
             result = await Runner.run(agent, q.question)
-            correct_flag = is_correct(result.final_output, q.answer)
+            answer = extract_answer(result.final_output)
+            correct_flag = is_correct(answer, q.answer)
             return {
                 "task_id": q.task_id,
                 "question": q.question,
                 "expected": q.answer,
-                "predicted": result.final_output,
+                "predicted": answer,
                 "correct": correct_flag,
             }
 
