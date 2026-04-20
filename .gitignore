@@ -1,2 +1,3 @@
 sources/*.pdf
+__pycache__
 docs/
