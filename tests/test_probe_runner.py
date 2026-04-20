@@ -1,7 +1,7 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from stem_agent.probe_runner import ProbeRunner, build_tools
-from evaluation.scoring import normalize
+from evaluation.scoring import extract_answer, normalize
 from stem_agent.models import AgentConfig, ProbeResult
 from evaluation.gaia_loader import GAIAQuestion
 
@@ -22,6 +22,25 @@ def test_normalize_strips_and_lowercases():
     assert normalize("  Paris  ") == "paris"
     assert normalize("42") == "42"
     assert normalize("NEW YORK") == "new york"
+
+
+def test_extract_answer_with_tag():
+    assert extract_answer("Some reasoning...\nANSWER: Paris") == "Paris"
+    assert extract_answer("Thinking...\nFinal Answer: 42") == "42"
+
+
+def test_extract_answer_markdown_bold():
+    assert extract_answer("Long reasoning...\n**ANSWER:** 90") == "90"
+    assert extract_answer("Steps...\n**Final Answer:** Louvrier") == "Louvrier"
+
+
+def test_extract_answer_last_wins():
+    text = "First try\nANSWER: wrong\nActually...\nANSWER: correct"
+    assert extract_answer(text) == "correct"
+
+
+def test_extract_answer_fallback():
+    assert extract_answer("Just a plain answer") == "Just a plain answer"
 
 
 def test_build_tools_web_search():

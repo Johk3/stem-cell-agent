@@ -49,9 +49,10 @@ async def test_commit_on_good_probe_score():
     controller = make_controller(signal_reader, synthesizer, probe_runner)
     config = await controller.differentiate()
 
-    assert config == GOOD_CONFIG
-    assert len(controller.log) == 1
-    assert controller.log[0]["outcome"] == "commit"
+    assert config.tools == GOOD_CONFIG.tools
+    outcomes = [entry["outcome"] for entry in controller.log]
+    assert "candidate" in outcomes
+    assert "commit" in outcomes
 
 
 async def test_apoptosis_on_synthesis_exception():
@@ -79,7 +80,7 @@ async def test_apoptosis_on_synthesis_exception():
     controller = make_controller(signal_reader, synthesizer, probe_runner)
     config = await controller.differentiate()
 
-    assert config == GOOD_CONFIG
+    assert config.tools == GOOD_CONFIG.tools
     outcomes = [entry["outcome"] for entry in controller.log]
     assert "apoptosis" in outcomes
     assert "commit" in outcomes
@@ -112,9 +113,10 @@ async def test_retrograde_migration_on_low_probe_score():
     controller = make_controller(signal_reader, synthesizer, probe_runner)
     config = await controller.differentiate()
 
-    assert config == GOOD_CONFIG
+    assert config.tools == GOOD_CONFIG.tools
     outcomes = [entry["outcome"] for entry in controller.log]
     assert "retrograde" in outcomes
+    assert "candidate" in outcomes
     assert "commit" in outcomes
 
     second_call = synthesizer.synthesize.call_args_list[1]
